@@ -411,8 +411,8 @@ Note que `/Asia/` equivale a `$0 ~ /Asia/`.
 
 ## Metacaracteres (/regexpr/)
 Notação | significado
---------|------------
 
+--------|------------
 A       | A
 \t      | tab [\b \f \n \r \t \ddd \c]
 \\*     | * literal [\ ^ $ . [ ] | ( ) * + ?]
