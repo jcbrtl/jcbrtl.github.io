@@ -20,7 +20,7 @@ Aos novos cientistas dos dados brasileiros, que percebam esta novidade de 1977.
          * [Comparação](#comparação)
          * [Computação](#computação)
          * [Conteúdo textual](#conteúdo-textual)
-      * [Combinando padrões com &amp;&amp; e; || ou; ! não](#combinando-padrões-com--e--ou--não)
+      * [Combinando padrões com &amp;&amp; e; \|\| ou; ! não](#combinando-padrões-com--e--ou--não)
       * [Validação de dados](#validação-de-dados)
       * [Padrões especiais](#padrões-especiais)
       * [Computando com Awk](#computando-com-awk)
@@ -196,9 +196,9 @@ A partir daqui, serão exibidas apenas partes dos programas.
 > /Susie/ # Imprime linhas nas quais há Susie nalgum lugar.
 
 
-## Combinando padrões com && e; || ou; ! não
+## Combinando padrões com && e; \|\| ou; ! não
 
-> $2 >= 4 || $3 >= 20
+> $2 >= 4 \|\| $3 >= 20
 
 Linhas que satisfazem ambas condições "passam no teste" apenas uma vez. De fato, é equivalente a isto:
 
@@ -388,7 +388,7 @@ Desse modo, campos podem ter espaços em branco " " enquanto são tratados como 
 
 
 ## Operadores
-> < <= == != >= > ~ |~
+> < <= == != >= > ~ \|~
 
 Qualquer expressão pode ser usada como operando de qualquer operador. Ocorre conversão implícita automaticamente.
 
@@ -404,7 +404,7 @@ Qualquer expressão pode ser usada como operando de qualquer operador. Ocorre co
 
 > $4 ~ /Asia/ # Teste passa se há "Asia" no 4to campo
 
-> $4 |~ /Asia/ # Teste passa se não há "Asia" no 4to campo
+> $4 \|~ /Asia/ # Teste passa se não há "Asia" no 4to campo
 
 Note que `/Asia/` equivale a `$0 ~ /Asia/`.
 
@@ -415,7 +415,7 @@ Notação | significado
 --------|-------------------------
 A       | A
 \t      | tab [\b \f \n \r \t \ddd \c]
-\\*     | * literal [\ ^ $ . [ ] | ( ) * + ?]
+\\*     | * literal [\ ^ $ . [ ] \| ( ) * + ?]
 ^       | inicio string
 $       | final string
 .       | qualquer caractere
@@ -436,23 +436,23 @@ AB+C    | ABC, ABBC, ABB...C
 
 > /^[0-9][0-9][0-9]$/ # Teste passa se ha exatamente 3 dígitos na LE em causa
 
-> /^(\\+|-)?[0-9]+\\.?[0-9]*$/ OU /^[+-]?[0-9]+[.]?[0-9]*$/ # número decimal, sinal opcional, fração opcional
+> /^(\\+\|-)?[0-9]+\\.?[0-9]*$/ OU /^[+-]?[0-9]+[.]?[0-9]*$/ # número decimal, sinal opcional, fração opcional
 
 > /^[A-Za-z][A-Za-z0-9]*$/ # Inicia-se com uma letra do alfabeto, que pode ser seguida por letras e números
 
-> /^[A-Za-z]$|^[A-Za-z][0-9]$/ OU /^[A-Za-z][0-9]?$/ # Uma letra, ou uma letra seguida por um número
+> /^[A-Za-z]$\|^[A-Za-z][0-9]$/ OU /^[A-Za-z][0-9]?$/ # Uma letra, ou uma letra seguida por um número
 
-> $2 |~ /^[0-9]+$/ # O 2do campo não é um número (string numérica)
+> $2 \|~ /^[0-9]+$/ # O 2do campo não é um número (string numérica)
 
 
 ## Padrões compostos
 > $4 == "Asia" && $3 > 500 # Teste passa se o 4to campo for "Asia" e o 3ro for maior que 500
 
-> $4 == "Asia" || $4 == "Europe" # Teste passa se o 4to campo for "Asia" ou "Europe"
+> $4 == "Asia" \|\| $4 == "Europe" # Teste passa se o 4to campo for "Asia" ou "Europe"
 
-> $4 ~ /^(Asia|Europe)$/ # Equivale ao teste acima; usando regexpr
+> $4 ~ /^(Asia\|Europe)$/ # Equivale ao teste acima; usando regexpr
 
-> /Asia/ || /Europe/ OU /Asia|Europe/ # Equivale ao teste acima se os termos apenas ocorrerem num só campo
+> /Asia/ \|\| /Europe/ OU /Asia\|Europe/ # Equivale ao teste acima se os termos apenas ocorrerem num só campo
 
 
 ## A variável FNR
@@ -581,17 +581,18 @@ $0 ~ digits
 ```
 
 Portanto uma regexpr (string) pode ser construída a partir de componentes menores (substrings concatenadas). Exemplo:
-> regexpr = "^(" regexpr1 "|" regexpr2 ")" ... regexprK "$"
+> regexpr = "^(" regexpr1 "\|" regexpr2 ")" ... regexprK "$"
 
 
 Nota: em strings, metacaracteres (das regexpr) devem ser prefixados com "\\\\" se se pretende testar a ocorrência literal do caractere (ou seja, o próprio "\" protegido [porque um nível de proteção é removido quando algo em aspas é avaliado pelo Awk])
 
-> $0 ~ /(\\+|-)[0-9]+/
+> $0 ~ /(\\+\|-)[0-9]+/
 
-> $0 ~ "(\\\\+|-)[0-9]+"
+> $0 ~ "(\\\\+\|-)[0-9]+"
 
 
 ## Funções embutidas para strings.
+
 Se r é regexpr; s, t são strings; n, p são inteiros:
 
 Função                | Descrição                                                         | Retorno
@@ -747,7 +748,7 @@ Observe que os nomes dos arquivos para os quais os resultados vão, estão entre
 
 
 ## Pipes
-> print | "cmd [cmd-args]"
+> print \| "cmd [cmd-args]"
 
 O nome desse pipe é "cmd [cmd-args]".
 
@@ -763,11 +764,11 @@ Como com arquivos, pipes são abertos uma única vez. Se um arquivo ou pipe for 
 ## Entrada
 > awk 'prog' data
 
-> cmd | awk 'prog'
+> cmd \| awk 'prog'
 
 
 ## Separador de campos variável (por LE), usando regexpr
-> BEGIN { FS = ",[ \t]*|[ \t]+" }
+> BEGIN { FS = ",[ \t]*\|[ \t]+" }
 
 O separador de campos é "," seguida opcionalmente por brancos e tabs, OU 1 ou mais brancos e tabs
 
@@ -783,12 +784,12 @@ Nota: ao mudar FS (do original " "), brancos e tabs em excesso não são descart
 
 ## A função getline
 
-Uso                                 | Descrição
-------------------------------------|-------------------------------------------------------------------------------------
-getline                             | pega próxima LE. separa campos. configura NF, NR, FNR.
-getline x                           | põe próxima LE na variável x. incrementa NR e FNR. não lida com campos.
-getline <"file" E cmd | getline     | lê do arquivo ou do pipe. não lida com NR e FNR, mas separa campos e configura NF.
-getline x <"file" E cmd | getline x | põe em x. não lida com NR, FNR, nem lida com campos
+Uso                                  | Descrição
+-------------------------------------|-------------------------------------------------------------------------------------
+getline                              | pega próxima LE. separa campos. configura NF, NR, FNR.
+getline x                            | põe próxima LE na variável x. incrementa NR e FNR. não lida com campos.
+getline <"file" E cmd \| getline     | lê do arquivo ou do pipe. não lida com NR e FNR, mas separa campos e configura NF.
+getline x <"file" E cmd \| getline x | põe em x. não lida com NR, FNR, nem lida com campos
 
 
 ### O valor duma expr getline
@@ -817,7 +818,7 @@ while ("who" | getline)
 ```
 
 #### Exemplo: pondo a data numa variável
-> "date" | getline d
+> "date" \| getline d
 
 
 ## Atribuições de variáveis pela linha de comando
