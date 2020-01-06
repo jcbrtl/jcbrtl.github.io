@@ -2,9 +2,9 @@
 
 Autor da síntese: J. Cesar Bertelli <jcbrtl-@-usp-.-br>
 
-Este documento é mantido em https://github.com/jcbrtl/awk
+Este documento é mantido em https://jcbrtl.github.io/docs/awk
 
-Versão do documento: 31.12.2019
+Versão do documento: 6.1.2020
 
 ## Dedicatória
 Aos novos cientistas dos dados brasileiros, que percebam esta novidade de 1977.
@@ -412,6 +412,7 @@ Note que `/Asia/` equivale a `$0 ~ /Asia/`.
 ## Metacaracteres (/regexpr/)
 Notação | significado
 --------|------------
+
 A       | A
 \t      | tab [\b \f \n \r \t \ddd \c]
 \\*     | * literal [\ ^ $ . [ ] | ( ) * + ?]
