@@ -491,6 +491,7 @@ Controla o separador de campos da saída. Não é incomum isto:
 
 
 ## Outras variáveis embutidas
+
 Nome   | Dado
 -------|-------------------
 ARGC   | número argumentos linha de comando
@@ -543,6 +544,7 @@ Uma atribuição é uma expressão cujo valor é idêntico ao que é atribuído.
 
 
 ## Funções aritméticas embutidas. Se x, y são expressões:
+
 Função      | Descrição
 ------------|----------------
 sqrt(x)     |
@@ -711,6 +713,7 @@ Dentro duma função, toda variável [no programa] que não esta na param-list �
 
 
 ### Formatação do printf, %[-][w][.p]c:
+
 Símbolo | Descrição
 --------|--------------
 \-      | alinha a esquerda
@@ -779,6 +782,7 @@ Nota: ao mudar FS (do original " "), brancos e tabs em excesso não são descart
 
 
 ## A função getline
+
 Uso                                 | Descrição
 ------------------------------------|-------------------------------------------------------------------------------------
 getline                             | pega próxima LE. separa campos. configura NF, NR, FNR.
