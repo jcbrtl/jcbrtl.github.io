@@ -1,4 +1,4 @@
-# Docker: introdução e referência
+# Docker: introdução e referência (não completo/não atual)
 
 Autor da síntese: J. Cesar Bertelli <jcbrtl-@-usp-.-br>
 
@@ -52,8 +52,8 @@ https://creativecommons.org/licenses/by-nc/4.0/deed.pt_BR
 .
 
 
-# Docker: introdução e referência
-**Obs.: Rascunho, a terminar**
+# Docker: uma brevíssima introdução com exemplos
+**Obs.: rascunho!**
 
 ## Características
 
